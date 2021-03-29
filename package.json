@@ -13,6 +13,7 @@
     "cripto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",

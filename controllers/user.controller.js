@@ -4,7 +4,6 @@ const Op = db.Sequelize.Op
 var jwt = require('jsonwebtoken')
 
 exports.verifyUser = async (req, res) => {
-  console.log(process.env.SECRET_KEY)
   let errors = []
   !req.body.username ? errors.push({field: 'username', error: 'Not exists'}) : null
   !req.body.password ? errors.push({field: 'password', error: 'Not exists'}) : null
