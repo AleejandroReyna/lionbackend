@@ -2,6 +2,7 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const db = require('./models')
+const users = require('./controllers/user.controller')
 
 const app = express()
 db.sequelize.sync();
@@ -20,6 +21,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get("/", (req, res) => {
   res.json({ message: "index." })
 })
+
+app.post("/login/", users.verifyUser)
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
