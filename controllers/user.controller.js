@@ -1,8 +1,10 @@
 const db = require("../models")
 const User = db.User
 const Op = db.Sequelize.Op
+var jwt = require('jsonwebtoken')
 
 exports.verifyUser = async (req, res) => {
+  console.log(process.env.SECRET_KEY)
   let errors = []
   !req.body.username ? errors.push({field: 'username', error: 'Not exists'}) : null
   !req.body.password ? errors.push({field: 'password', error: 'Not exists'}) : null
@@ -23,6 +25,7 @@ exports.verifyUser = async (req, res) => {
       errors
     })
   }
-  return res.json(data)
+  var token = jwt.sign({username: data[0].username}, process.env.SECRET_KEY)
+  return res.json({username: data[0].username, token})
 }
 

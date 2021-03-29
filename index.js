@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 const db = require('./models')
 const users = require('./controllers/user.controller')
+require('dotenv').config()
 
 const app = express()
 db.sequelize.sync();
