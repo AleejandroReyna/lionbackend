@@ -31,3 +31,19 @@ exports.verifyUser = async (req, res) => {
   return res.json({username: data[0].username, token})
 }
 
+exports.createUser = async (req, res) => {
+  let { username, password} = req.body
+  let errors = []
+  !req.body.username ? errors.push({field: 'username', error: 'Not exists'}) : null
+  !req.body.password ? errors.push({field: 'password', error: 'Not exists'}) : null
+  if (errors.length > 0) {
+    return res.status(400).send({
+      errors
+    })
+  }
+  const newUser = await User.create({ username, password })
+  if(!newUser) {
+    return res.status(400).send({errors: []})
+  }
+  res.json({ id: newUser.id, username: newUser.username, createdAt: newUser.createdAt })
+}

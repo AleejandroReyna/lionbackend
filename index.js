@@ -19,7 +19,7 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(jwt({ secret: process.env.SECRET_KEY, algorithms: ['HS256']}).unless({path: ['/','/login/']}));
+app.use(jwt({ secret: process.env.SECRET_KEY, algorithms: ['HS256']}).unless({path: ['/','/login/', '/signup/']}));
 
 
 app.get("/", (req, res) => {
@@ -27,6 +27,7 @@ app.get("/", (req, res) => {
 })
 
 app.post("/login/", users.verifyUser)
+app.post("/signup/", users.createUser)
 app.get("/data/", pages.getData)
 
 const PORT = process.env.PORT || 8000;
