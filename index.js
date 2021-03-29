@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 const db = require('./models')
 const users = require('./controllers/user.controller')
+const pages = require('./controllers/pages.controller')
 require('dotenv').config()
 
 const app = express()
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 })
 
 app.post("/login/", users.verifyUser)
+app.get("/data/", pages.getData)
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
