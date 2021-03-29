@@ -25,7 +25,10 @@ exports.verifyUser = async (req, res) => {
       errors
     })
   }
-  var token = jwt.sign({username: data[0].username}, process.env.SECRET_KEY)
+  var token = jwt.sign({
+    data: {username: data[0].username},
+    exp: Math.floor(Date.now() / 1000) + (60 * 60)
+  }, process.env.SECRET_KEY)
   return res.json({username: data[0].username, token})
 }
 
