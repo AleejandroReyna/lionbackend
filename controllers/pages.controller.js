@@ -59,3 +59,11 @@ exports.setFavorite = async (req, res) => {
     return res.status(500).send({ errors })
   }
 }
+
+exports.getFavorite = async (req, res) => {
+  let request = await FavoriteBreed.findOne({userId: req.user.data.id})
+  if(request) {
+    return res.json({breed: request.breed, parent: request.parent})
+  }
+  return res.status(404).send({errors: [{field: "", error: "not found"}]})
+}

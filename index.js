@@ -30,6 +30,7 @@ app.post("/login/", users.verifyUser)
 app.post("/signup/", users.createUser)
 app.get("/data/", pages.getData)
 app.post("/set_favorite/", pages.setFavorite)
+app.get("/get_favorite/", pages.getFavorite)
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
