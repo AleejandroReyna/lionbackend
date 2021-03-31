@@ -24,3 +24,8 @@ exports.getData = async (req, res) => {
     return res.status(500).send({ errors })
   }
 }
+
+exports.setFavorite = async (req, res) => {
+  let errors = []
+  res.json({h: "w"})
+}
