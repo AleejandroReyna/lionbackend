@@ -25,7 +25,7 @@ exports.verifyUser = async (req, res) => {
     })
   }
   var token = jwt.sign({
-    data: {username: data[0].username},
+    data: {username: data[0].username, id: data[0].id},
     exp: Math.floor(Date.now() / 1000) + (60 * 60)
   }, process.env.SECRET_KEY)
   return res.json({username: data[0].username, token})
@@ -34,8 +34,8 @@ exports.verifyUser = async (req, res) => {
 exports.createUser = async (req, res) => {
   let { username, password} = req.body
   let errors = []
-  !req.body.username ? errors.push({field: 'username', error: 'Not exists'}) : null
-  !req.body.password ? errors.push({field: 'password', error: 'Not exists'}) : null
+  !req.body.username ? errors.push({field: 'username', error: 'Field required!'}) : null
+  !req.body.password ? errors.push({field: 'password', error: 'Field required!'}) : null
   if (errors.length > 0) {
     return res.status(400).send({
       errors
