@@ -41,7 +41,11 @@ exports.setFavorite = async (req, res) => {
   }
   //upsert doesn't work for me
   try {
-    let request = await FavoriteBreed.findOne({userId: params.userId})
+    let request = await FavoriteBreed.findOne({
+      where: {
+        userId: params.userId
+      }
+    })
     if (request) {
       console.log(request.id)
       let updateRequest = await FavoriteBreed.update(params, {
@@ -61,7 +65,12 @@ exports.setFavorite = async (req, res) => {
 }
 
 exports.getFavorite = async (req, res) => {
-  let request = await FavoriteBreed.findOne({userId: req.user.data.id})
+  console.log(req.user.data.id)
+  let request = await FavoriteBreed.findOne({
+    where: {
+      userId: req.user.data.id
+    }
+  })
   if(request) {
     return res.json({breed: request.breed, parent: request.parent})
   }
