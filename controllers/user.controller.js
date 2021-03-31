@@ -12,23 +12,22 @@ exports.verifyUser = async (req, res) => {
       errors
     })
   }
-  let data = await User.findAll({
+  let user = await User.findOne({
     where: {
-      username: req.body.username,
-      password: req.body.password
+      username: req.body.username
     }
   })
-  if(data.length < 1) {
+  if(!user || !user.correctPassword(req.body.password)) {
     errors.push({field: '', error: 'Verify data and try again'})
     return res.status(400).send({
       errors
     })
   }
   var token = jwt.sign({
-    data: {username: data[0].username, id: data[0].id},
+    data: {username: user.username, id: user.id},
     exp: Math.floor(Date.now() / 1000) + (60 * 60)
   }, process.env.SECRET_KEY)
-  return res.json({username: data[0].username, token})
+  return res.json({username: user.username, token})
 }
 
 exports.createUser = async (req, res) => {

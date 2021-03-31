@@ -57,6 +57,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  User.prototype.correctPassword = function(enteredPassword) {
+    return User.encryptPassword(enteredPassword, this.salt()) === this.password()
+  }
+
   User.beforeCreate(setSaltAndPassword)
   User.beforeUpdate(setSaltAndPassword)
 
