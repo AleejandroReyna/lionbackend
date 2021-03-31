@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   FavoriteBreed.init({
     breed: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    parent: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'FavoriteBreed',
