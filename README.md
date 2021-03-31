@@ -28,13 +28,21 @@ Set the enviroment variables. (use the .env.example for guide)
 
 #### Step 06:
 
-wish me luck!!! ( :
+Run npx sequelize-cli db:create if DB not exists.
 
 #### Step 07:
 
-Run the command `npx nodemon index.js`.
+Run npx sequelize-cli db:migrate for run all migrations.
 
 #### Step 08:
+
+wish me luck!!! ( :
+
+#### Step 09:
+
+Run the command `npx nodemon index.js`.
+
+#### Step 10:
 
 that's it all! Clone and run the frontend app [here!](https://github.com/AleejandroReyna/lionfrontend)
 
