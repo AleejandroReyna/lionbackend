@@ -45,6 +45,7 @@ exports.createUser = async (req, res) => {
     const newUser = await User.create({ username, password })
     return res.json({ id: newUser.id, username: newUser.username, createdAt: newUser.createdAt })
   } catch(e) {
+    console.log(e)
     e.errors.forEach(error => {
       errors.push({field: error.path, error: error.message})
     })
